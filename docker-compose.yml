@@ -89,6 +89,22 @@ services:
     networks:
       - master-coder-net
 
+  api-tower:
+    container_name: api-tower
+    build:
+      context: ./api-tower .
+      target: development
+    volumes:
+      - ./api-tower/src
+      - ./api-tower/src/node_modules
+    ports:
+      - 3040:3040
+    command: npm run start:dev
+    env_file:
+      - ./api-tower/.env
+    networks:
+      - master-coder-net
+
   web-spa-client:
     container_name: web-spa-client
     build:
